@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
         controle.vm.network "private_network", ip: "172.17.177.100"
         controle.vm.provider "virtualbox" do |vb|
             vb.name = "controle"
-            vb.memory = "2048"
+            vb.memory = "4096"
             vb.cpus = 2
         end
         controle.vm.provision "ansible_local" do |ansible|
@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
         end
         controle.vm.provision "ansible_local" do |ansible|
             ansible.playbook = "installdocker.yml"
+            ansible.install_mode = "pip"
+        end
+        controle.vm.provision "ansible_local" do |ansible|
+            ansible.playbook = "installjenkins.yml"
             ansible.install_mode = "pip"
         end
 #       controle.vm.provision "shell", inline: "apt -y install git"
@@ -31,7 +35,16 @@ Vagrant.configure("2") do |config|
             vb.memory = "512"
             vb.cpus = 2
         end
+        web.vm.provision "ansible_local" do |ansible|
+            ansible.playbook = "playbook.yml"
+            ansible.install_mode = "pip"
+        end
+        web.vm.provision "ansible_local" do |ansible|
+            ansible.playbook = "installdocker.yml"
+            ansible.install_mode = "pip"
+        end
     end
+
     config.vm.define "db" do |db|
         db.vm.box = "shekeriev/debian-11"
         db.vm.hostname = "db"
