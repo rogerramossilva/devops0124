@@ -11,7 +11,6 @@ pipeline {
         stage('Build Images') {
             steps {
                 script {
-		   sh 'sudo usermod -aG docker $USER'
                     // Nome das imagens
                     def imageNameWeb = 'rogerramossilva/web'
                     def imageNameDB = 'rogerramossilva/db'
