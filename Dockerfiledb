@@ -1,5 +1,5 @@
 FROM mariadb:10.6
-LABEL maintainer="Rogerio Martinho rogerio@asf.com"
+LABEL maintainer="Rogerio Ramos rogerio@asf.com"
 ENV MYSQL_ROOT_PASSWORD=LinuxForce01
 ENV MYSQL_DATABASE=backup
 ENV MYSQL_USER=express
