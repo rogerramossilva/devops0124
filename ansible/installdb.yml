@@ -33,8 +33,7 @@
     - name: 'Criação de Usuário Express no Mysql'
       mysql_user:
         host: '%'
-        login_user: root
-        login_password: ""
+        login_unix_socket: /run/mysqld/mysqld.sock
         name: express
         password: 'AllSafe0!'
         priv: 'backup.*:ALL'
